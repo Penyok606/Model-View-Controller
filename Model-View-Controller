@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+// Модель (Model)
+class Model {
+private:
+    std::string data;
+
+public:
+    void setData(const std::string& newData) {
+        data = newData;
+    }
+
+    std::string getData() const {
+        return data;
+    }
+};
+
+// Перегляд (View)
+class View {
+public:
+    void displayData(const std::string& data) {
+        std::cout << "View: Displaying data - " << data << std::endl;
+    }
+};
+
+// Контролер (Controller)
+class Controller {
+private:
+    Model model;
+    View view;
+
+public:
+    void updateModel(const std::string& newData) {
+        model.setData(newData);
+    }
+
+    void displayData() {
+        std::string data = model.getData();
+        view.displayData(data);
+    }
+};
+
+// Головна функція
+int main() {
+    Controller controller;
+
+    // Імітація введення нових даних через контролер
+    controller.updateModel("New Data");
+
+    // Виведення даних через контролер
+    controller.displayData();
+
+    return 0;
+}
+
+
+У цьому прикладі Model відповідає за утримання даних, View відображає ці дані, 
+а Controller обробляє введення і взаємодіє як з Model, так і з View. 
+Цей код використовує консольний вивід для відображення результатів.
